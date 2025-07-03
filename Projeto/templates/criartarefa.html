@@ -1,0 +1,26 @@
+{% extends "home.html" %}
+
+{% block titulo %}
+<title>Criar Tarefa</title>
+{% endblock %}
+
+{% block formulario %}
+{% if current_user.is_authenticated %}
+  <h2>Criar Nova Tarefa</h2>
+  <form method="POST">
+      {{ form.hidden_tag() }}
+      <p>{{ form.titulo.label }}<br>{{ form.titulo() }}</p>
+      <p>{{ form.categoria.label }}<br>{{ form.categoria() }}</p>
+
+      <p>{{ form.botao_confirmacao() }}</p>
+  </form>
+
+  <p>
+    <a href="{{ url_for('listar_tarefas') }}"> Voltar para tarefas</a><br>
+    <a href="{{ url_for('logout') }}"> Sair</a>
+  </p>
+{% else %}
+  <p>Você precisa estar logado para criar tarefas.</p>
+  <a href="{{ url_for('homepage') }}">Ir para login</a>
+{% endif %}
+{% endblock %}

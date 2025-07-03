@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+
+{% block titulo %}
+<title>Minhas Tarefas</title>
+{% endblock %}
+
+{% block formulario %}
+{% if current_user.is_authenticated %}
+    <h1>Minhas Tarefas</h1>
+    {% if tarefas %}
+        <ul>
+            {% for tarefa in tarefas %}
+                <li>{{ tarefa.titulo }} - Categoria: {{ tarefa.categoria.nome if tarefa.categoria else 'Sem categoria' }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Você não tem tarefas cadastradas.</p>
+    {% endif %}
+
+    <p>
+        <a href="{{ url_for('criar_tarefa') }}">Criar nova tarefa</a><br>
+        <a href="{{ url_for('logout') }}">Sair</a>
+    </p>
+{% else %}
+    <p>Você precisa estar logado para ver suas tarefas.</p>
+    <a href="{{ url_for('homepage') }}">Ir para login</a>
+{% endif %}
+{% endblock %}

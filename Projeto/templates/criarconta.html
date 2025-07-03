@@ -1,0 +1,18 @@
+{% extends "home.html" %}
+
+{% block titulo %}
+    Criar Conta
+{% endblock %}
+
+{% block formulario %}
+<h2>Criar Conta</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <p>{{ form.email.label }}<br>{{ form.email() }}</p>
+    <p>{{ form.username.label }}<br>{{ form.username() }}</p>
+    <p>{{ form.senha.label }}<br>{{ form.senha() }}</p>
+    <p>{{ form.confirmacao_senha.label }}<br>{{ form.confirmacao_senha() }}</p>
+    <p>{{ form.botao_confirmacao() }}</p>
+</form>
+<p>Já tem uma conta? <a href="{{ url_for('homepage') }}">Faça login aqui</a></p>
+{% endblock %}

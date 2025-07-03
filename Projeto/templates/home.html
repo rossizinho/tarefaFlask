@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerenciador de Tarefas</title>
+</head>
+<body>
+{% block titulo %}
+    <h1>Login</h1>
+{% endblock %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+          <li style="color: {% if category == 'danger' %}red{% else %}green{% endif %};">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% block formulario %}
+      {% if form %}
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          <p>{{ form.email.label }}<br>{{ form.email() }}</p>
+          <p>{{ form.senha.label }}<br>{{ form.senha() }}</p>
+          <p>{{ form.botao_confirmacao() }}</p>
+        </form>
+
+        <p>Não tem conta? <a href="{{ url_for('criarconta') }}">Clique aqui para criar</a></p>
+
+      {% else %}
+        <p>Bem vindo ao Gerenciador de Tarefas!</p>
+      {% endif %}
+
+      {% if current_user.is_authenticated %}
+        <p><a href="{{ url_for('logout') }}">Sair</a></p>
+      {% endif %}
+    {% endblock %}
+</body>
+</html>
+
+

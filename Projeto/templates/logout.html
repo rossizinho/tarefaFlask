@@ -1,0 +1,11 @@
+{% extends "home.html" %}
+
+{% block titulo %}
+<title>Logout</title>
+{% endblock %}
+
+{% block content %}
+<h2>Você saiu da sua conta</h2>
+<p>Esperamos te ver em breve!</p>
+<p><a href="{{ url_for('home.html') }}">Fazer login novamente</a></p>
+{% endblock %}
